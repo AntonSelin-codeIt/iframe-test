@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+  <button class='regular'>
+    regular
+  </button>
+
+  <button class='new'>
+    new one
+  </button>
+
+
+
+
+  <script>
+    var regular = document.querySelector('.regular');
+    var newOne =
+    document.querySelector('.new');
+
+
+    regular.addEventListener('click', () => {
+      console.log('regular click');
+      const target = window.top;
+      target.postMessage({work: true}, "*");
+    });
+
+    newOne.addEventListener('click', () => {
+      console.log('newOne click');
+      var target;
+      var opener = true;
+
+      if(opener) {
+        target = window.opener || window.parent || window.top;
+      } else {
+        target = window.top || window.parent || window.opener;
+      }
+
+      target.postMessage({work: true}, "*");
+    });
+
+  </script>
+</body>
+</html>
